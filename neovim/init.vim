@@ -4,13 +4,10 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync
 endif
-
 call plug#begin('~/.config/nvim/plugged')
 
 " Swift syntax highlighting
 Plug 'https://github.com/keith/swift.vim.git'
-" Nerdtree (file directory browser)
-Plug 'https://github.com/scrooloose/nerdtree.git'
 " Bracket and quote completion
 Plug 'https://github.com/tpope/vim-surround.git'
 " Completion
@@ -29,17 +26,12 @@ Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 Plug 'fatih/vim-go' " May conflict w/ deoplete-go
-" Better markdown support 
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
 " FZF (through Homebrew)
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 " Airline status bar below
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" ALE Linting for Go, Swift, etc
-Plug 'w0rp/ale'
 
 " Themes
 Plug 'whatyouhide/vim-gotham'
@@ -56,7 +48,7 @@ call plug#end()
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
 if (has("nvim"))
-  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+ "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
@@ -128,12 +120,8 @@ au FileType go nmap <Leader>gb <Plug>(go-build)
 au FileType go nmap <Leader>gt <Plug>(go-test)
 
 " ########## GENERAL SETTINGS ###########
-" Make nerdtree show hidden files by default
-let NERDTreeShowHidden=1
 " Line numbers
 set number
-" close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " Turn off GitGutter by default
 " Enable w/ :GitGutterToggle
 let g:gitgutter_enabled = 0
@@ -149,8 +137,6 @@ autocmd InsertLeave * highlight  CursorLine ctermbg=White ctermfg=Black
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Show matching brackets
 set showmatch
-" Use macOS pasteboard
-set clipboard=unnamed
 " Fixes cursor 
 set guicursor=
 
@@ -161,11 +147,6 @@ set shiftwidth=4    " number of spaces to use for autoindent
 set expandtab       " tabs are space
 set autoindent
 set copyindent      " copy indent from the previous line
-
-" ########### ALE SETTINGS ###############
-" Error and warning signs.
-"let g:ale_sign_error = '⤫'
-"let g:ale_sign_warning = '-'
 
 " ########## AIRLINE SETTINGS ###########
 
